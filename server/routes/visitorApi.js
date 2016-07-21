@@ -1,12 +1,14 @@
 /**
- * Created by Meghana on 6/2/2016.
+ * Created by Meghana on Feb-06-2016.
  */
 
+// Initializing the node module variables...
 var Visitor = require('../models/visitor');
 var multiparty = require('multiparty');          // Multipart/form-data parser which supports streaming.
-var uuid = require('node-uuid');                // Creates unique id.
-var path = require('path');                    // Provides utilities for working with file and directory paths.
-var fs = require('fs');                       //  Provides file system.
+var uuid = require('node-uuid');                 // Creates unique id.
+var path = require('path');                      // Provides utilities for working with file and directory paths.
+var fs = require('fs');                          //  Provides file system.
+
 
 // Find and get all the documents from the VisitorRegistration table.
 module.exports = function(server) {
@@ -18,8 +20,6 @@ module.exports = function(server) {
             res.json(VisitorRegistration); // return all the data in JSON format
         });
     });
-
-
 
     // Inserts the image into the destination path in the server.
     server.post('/uploadImage', function (req, res) {
