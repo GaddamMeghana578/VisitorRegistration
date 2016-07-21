@@ -1,0 +1,16 @@
+
+// Package.json file that includes all the node packages needed on the server side.
+
+{
+  "name": "VisitorRegistration",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.4.2",
+    "express": "~4.5.1",
+    "method-override": "~2.0.2",
+    "mongoose": "~3.8.0",
+    "morgan": "~1.7.0",
+    "multiparty": "~4.1.2",
+    "node-uuid": "~1.4.7" }
+}

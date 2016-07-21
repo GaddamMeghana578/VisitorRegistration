@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome To</title>
+</head>
+<body ng-app = "VisitorApp" ng-controller = "VisitorController" ng-submit="submitForm()"  novalidate >
+<div class = "container" class ="print">
+    <div class="row">
+        <div class=" col-xs-push-3 col-sm-9">
+            <p></p>
+        </div>
+        <div class="col-sm-12">
+            <h3 class="alert alert-warning" ><strong>Visitor Portal</strong></h3>
+        </div>
+        <div class = "form-group col-md-push-10 col-md-12">
+            <button class="btn btn-default"><a href="/#/Login">Login</a></button>
+            <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#mymodal" data-toggle="tooltip" data-placement="bottom" title="If you are a visitor kindly enroll">Enroll</button>
+        </div>
+        <div class=" col-sm-12">
+            <img style = "width: 2500px; height: 750px" src = "/images/office2.jpg" class ="img-responsive" alt="Responsive image">
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p class = "text-center">&copy; Company 2016</p>
+</footer>
+
+<!-- REGISTRATION MODAL DIALOG -->
+<div class="modal fade"  id = "mymodal">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header alert alert-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="text-center">VisitorDetails</h4>
+            </div>
+            <div class = "modal-body">
+                <!--Visitor Form Entries -->
+                <form data-toggle="validator" name="registerForm"  ng-submit="submitForm()" novalidate>
+                    <div class ="row">
+                        <div class = "form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.firstname.$invalid && (registerForm.firstname.$dirty || submitted)}">
+                            <label for="firstname">FirstName</label><span style="color:red;">*</span>
+                            <input type= "text"  class="form-control" name="firstname" ng-model="user.FirstName" id="firstname"required>
+                            <p ng-show ="registerForm.firstname.$error.required && (registerForm.firstname.$dirty || submitted)" class ="help-block">
+                                Please enter your firstname!</p>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class = " form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.lastname.$invalid && (registerForm.lastname.$dirty || submitted)}">
+                            <label for="lastname">LastName</label><span style="color:red;">*</span>
+                            <input type = "text" class="form-control" name="lastname" ng-model="user.LastName" id="lastname" required>
+                            <p ng-show ="registerForm.lastname.$error.required && (registerForm.lastname.$dirty || submitted)" class ="help-block">
+                                Please enter your lastname!</p>
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "form-group col-xs-push-1 col-md-10">
+                            <label for = "Company">Company</label>
+                            <input type = "text" class="form-control" name="Company" ng-model="user.Company" id="Company">
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "form-group col-xs-push-1 col-md-10">
+                            <label for = "Jobtitle">JobTitle</label>
+                            <input type = "text" class="form-control" name="Jobtitle" ng-model="user.JobTitle" id="jobtitle">
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class = "form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.email.$invalid && (registerForm.email.$dirty || submitted)}">
+                            <label for = "email">Email</label><span style="color:red;">*</span>
+                            <input type = "email" class="form-control" name="email" ng-pattern="/\S+@\S+\.\S+/" ng-model="user.Email" id="email" required>
+                            <p ng-show="registerForm.email.$error.required && (registerForm.email.$dirty || submitted)" class="help-block">Please enter your Email address.</p>
+                            <p ng-show="registerForm.email.$error.pattern && (registerForm.email.$dirty || submitted)">Invalid email address.</p>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class = "form-group col-xs-push-1 col-md-10">
+                            <label for = "MobileNumber">MobileNumber</label>
+                            <input type = "MobileNumber" class="form-control" name="mobile" ng-pattern="/^[2-9]{2}[0-9]{8}$/" ng-model="user.MobileNumber" id="mobilenumber">
+                            <p ng-show="registerForm.mobile.$error.pattern" class="help-block">Please enter a valid mobile number</p>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class = "form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.Person.$invalid && (registerForm.Person.$dirty || submitted)}">
+                            <label for = "Person">Visiting?</label><span style="color:red;">*</span>
+                            <input type = "text" class="form-control" name="Person" ng-model="user.Person" id="Person" required>
+                            <p ng-show="registerForm.Person.$error.required && (registerForm.Person.$dirty || submitted)" class="help-block">Who are you here to see?</p>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class = "form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.Visit.$invalid && (registerForm.Visit.$dirty || submitted)}">
+                            <label for = "Visit">Purpose of Visit</label><span style="color:red;">*</span>
+                            <input type = "text" class="form-control" name="Visit" ng-model="user.Visit" id="Visit"required>
+                            <p ng-show ="registerForm.Visit.$error.required && (registerForm.Visit.$dirty || submitted)" class ="help-block">
+                                Enter the purpose of visit!</p>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class="form-group col-sm-push-1 col-sm-10">
+                            <div><button ngf-select="onFileSelect($files)" name="Image" ng-model="user.Image" accept="image/png, image/jpeg">Upload Photo</button></div>
+                            <p ng-show ="registerForm.Image.$error.required" class ="help-block">
+                                Upload the Photo!</p>
+                        </div>
+                        <div class="form-group col-sm-push-1 col-sm-10">
+                            <img ngf-thumbnail="user.Image" ngf-size ="{width: 120, height: 120, quality: 0.9}"/>
+                        </div>
+                    </div>
+                </form>
+                <div class = "modal-footer">
+                    <button class="btn btn-warning" ng-disabled="registerForm.$invalid" data-dismiss="modal" data-toggle="modal" data-target="#yesmodal" ng-click="createVisitorRegistration(user)">Submit</button>
+                    <button type="reset" class="btn btn-default" ng-click="refresh()">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- REGISTRATION SUCCESSFUL SHOW PROFILE OF A VISITOR MODAL DIALOG -->
+<div class="modal fade" id = "yesmodal">
+    <div class = "modal-dialog">
+        <div class = "modal-content" id ="printThis">
+            <div class = "modal-header bg-success">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class = "bg-success text-center"><strong>Visitor</strong></h2>
+            </div>
+            <div class = "modal-body">
+                <div id="container">
+                    <img style = "float:right; width: 120px; height: 150px" ngf-thumbnail="img" class ="img-circle" />
+                </div>
+                <h3><b>{{VName }} {{LName }}</b></h3>
+                <h4>Visiting: <b> {{person }}</b></h4>
+                <h4>Purpose Of Visit: <b> {{visit}}</b></h4>
+                <h4>{{date}}</h4>
+            </div>
+            </div>
+            <div class = "modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" ng-click="refresh()">Close</button>
+                <button class="btn btn-warning" id="Print">Print</button>
+            </div>
+    </div>
+</div>
+
+</body>
+</html>

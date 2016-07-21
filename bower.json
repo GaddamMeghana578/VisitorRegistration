@@ -1,0 +1,16 @@
+
+// bower.json file that includes all the packages needed on the client side.
+
+{
+  "name": "angular-client",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "animate.css": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "jquery": "latest",
+    "ng-file-upload": "latest"
+  }
+}
