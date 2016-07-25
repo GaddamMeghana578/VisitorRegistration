@@ -1,5 +1,4 @@
 
-// Package.json file that includes all the node packages needed on the server side.
 
 {
   "name": "VisitorRegistration",
