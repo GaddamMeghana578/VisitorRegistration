@@ -1,14 +1,17 @@
+
+
 /**
  * Created by Meghana on Feb-06-2016.
  */
 
 // Initializing the node module variables...
-var Visitor = require('../models/visitor');
+var Visitor = require('../models/visitor');      // Reference to Visitor.js
 var multiparty = require('multiparty');          // Multipart/form-data parser which supports streaming.
 var uuid = require('node-uuid');                 // Creates unique id.
 var path = require('path');                      // Provides utilities for working with file and directory paths.
 var fs = require('fs');                          //  Provides file system.
-
+var nodemailer = require("nodemailer");
+var smtpTransport = require('nodemailer-smtp-transport');
 
 // Find and get all the documents from the VisitorRegistration table.
 module.exports = function(server) {
@@ -55,6 +58,35 @@ module.exports = function(server) {
     // Inserts the data in to the VisitorRegistration table.
     server.post('/VisitorRegistration', function (req, res) {
         var visitorData = req.body;
+        // create reusable transport method (opens pool of SMTP connections)
+         var transporter = nodemailer.createTransport(smtpTransport({
+         service: "Gmail",  // sets automatically host, port and connection security settings
+         auth: {
+         user: "maggi.reddy84@gmail.com",
+         pass: "FrenchConnectionUnitedKingdom578"
+         }
+         }));
+
+         // setup e-mail data with unicode symbols
+         var mailOptions = {
+         from: "maggi.reddy84@gmail.com", // sender address
+         to: "meghana_reddy9092@yahoo.com", // list of receivers
+         subject: "VisitorDetails", // Subject line
+         text: "Hello this person has come to visit you. The name of the person is mentioned below", // plaintext body
+         html: visitorData.FirstName// html body
+         }
+         // send mail with defined transport object
+         transporter.sendMail(mailOptions, function(error, response){
+         if(error){
+         console.log(error);
+         }else{
+         console.log("Message sent: " + response.message);
+         }
+
+         // if you don't want to use this transport object anymore, uncomment following line
+         transporter.close(); // shut down the connection pool, no more messages
+         });
+
         console.log(visitorData);
         var visitor = new Visitor(visitorData);
         visitor.save(function (err, result) {

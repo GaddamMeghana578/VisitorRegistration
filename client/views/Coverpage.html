@@ -5,17 +5,22 @@
     <title>Welcome To</title>
 </head>
 <body ng-app = "VisitorApp" ng-controller = "VisitorController" ng-submit="submitForm()"  novalidate >
-<div class = "container" class ="print">
+<div class = "animated fadeInDown container" class ="print">
     <div class="row">
         <div class=" col-xs-push-3 col-sm-9">
             <p></p>
+        </div>
+        <div class = "form-group col-md-push-9 col-md-10">
+            <audio controls>
+                <source src="/audio/Instructions.m4a" type = "audio/mp4">
+            </audio>
         </div>
         <div class="col-sm-12">
             <h3 class="alert alert-warning" ><strong>Visitor Portal</strong></h3>
         </div>
         <div class = "form-group col-md-push-10 col-md-12">
-            <button class="btn btn-default"><a href="/#/Login">Login</a></button>
-            <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#mymodal" data-toggle="tooltip" data-placement="bottom" title="If you are a visitor kindly enroll">Enroll</button>
+            <button class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#mymodal" data-toggle="tooltip" data-placement="left" title="If you are a visitor kindly enroll">Enroll</button>
+            <button class="btn btn-default" data-toggle="tooltip" data-placement="right" title="If you are an administrator kindly login"><a href="/#/Login">Login</a></button>
         </div>
         <div class=" col-sm-12">
             <img style = "width: 2500px; height: 750px" src = "/images/office2.jpg" class ="img-responsive" alt="Responsive image">
@@ -28,7 +33,7 @@
 </footer>
 
 <!-- REGISTRATION MODAL DIALOG -->
-<div class="modal fade"  id = "mymodal">
+<div class="animated zoomIn modal fade"  id = "mymodal" >
     <div class = "modal-dialog">
         <div class = "modal-content">
             <div class = "modal-header alert alert-warning">
@@ -41,17 +46,19 @@
                     <div class ="row">
                         <div class = "form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.firstname.$invalid && (registerForm.firstname.$dirty || submitted)}">
                             <label for="firstname">FirstName</label><span style="color:red;">*</span>
-                            <input type= "text"  class="form-control" name="firstname" ng-model="user.FirstName" id="firstname"required>
-                            <p ng-show ="registerForm.firstname.$error.required && (registerForm.firstname.$dirty || submitted)" class ="help-block">
-                                Please enter your firstname!</p>
+                            <input type= "text"  class="form-control" name="firstname" ng-model="user.FirstName" id="firstname"required ng-minlength="3">
+                            <p ng-show ="registerForm.firstname.$error.minlength &&(registerForm.firstname.$dirty || submitted)"  class ="help-block">
+                                FirstName must be minimum 3 characters long!</p>
                         </div>
                     </div>
                     <div class ="row">
+
+
                         <div class = " form-group col-xs-push-1 col-md-10" ng-class ="{ 'has-error': registerForm.lastname.$invalid && (registerForm.lastname.$dirty || submitted)}">
                             <label for="lastname">LastName</label><span style="color:red;">*</span>
-                            <input type = "text" class="form-control" name="lastname" ng-model="user.LastName" id="lastname" required>
-                            <p ng-show ="registerForm.lastname.$error.required && (registerForm.lastname.$dirty || submitted)" class ="help-block">
-                                Please enter your lastname!</p>
+                            <input type = "text" class="form-control" name="lastname" ng-model="user.LastName" id="lastname" required ng-minlength="3">
+                            <p ng-show ="registerForm.lastname.$error.minlength && (registerForm.lastname.$dirty || submitted)" class ="help-block">
+                                LastName must be minimum 3 characters long!</p>
                         </div>
                     </div>
                     <div class = "row">
@@ -71,7 +78,7 @@
                             <label for = "email">Email</label><span style="color:red;">*</span>
                             <input type = "email" class="form-control" name="email" ng-pattern="/\S+@\S+\.\S+/" ng-model="user.Email" id="email" required>
                             <p ng-show="registerForm.email.$error.required && (registerForm.email.$dirty || submitted)" class="help-block">Please enter your Email address.</p>
-                            <p ng-show="registerForm.email.$error.pattern && (registerForm.email.$dirty || submitted)">Invalid email address.</p>
+                            <p ng-show="registerForm.email.$error.pattern || submitted">Invalid email address.</p>
                         </div>
                     </div>
                     <div class ="row">
@@ -98,9 +105,7 @@
                     </div>
                     <div class ="row">
                         <div class="form-group col-sm-push-1 col-sm-10">
-                            <div><button ngf-select="onFileSelect($files)" name="Image" ng-model="user.Image" accept="image/png, image/jpeg">Upload Photo</button></div>
-                            <p ng-show ="registerForm.Image.$error.required" class ="help-block">
-                                Upload the Photo!</p>
+                            <div><button ngf-select="onFileSelect($files)" name="Image" ng-model="user.Image" accept="image/png, image/jpeg" data-toggle="tooltip" data-placement="right" title="Kindly upload the image">Upload Photo</button></div>
                         </div>
                         <div class="form-group col-sm-push-1 col-sm-10">
                             <img ngf-thumbnail="user.Image" ngf-size ="{width: 120, height: 120, quality: 0.9}"/>
@@ -119,25 +124,24 @@
 
 
 <!-- REGISTRATION SUCCESSFUL SHOW PROFILE OF A VISITOR MODAL DIALOG -->
-<div class="modal fade" id = "yesmodal">
+<div class="animated bounceInUp modal fade" id = "yesmodal">
     <div class = "modal-dialog">
         <div class = "modal-content" id ="printThis">
             <div class = "modal-header bg-success">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="reset" class="close" ng-click ="refresh()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h2 class = "bg-success text-center"><strong>Visitor</strong></h2>
             </div>
             <div class = "modal-body">
                 <div id="container">
-                    <img style = "float:right; width: 120px; height: 150px" ngf-thumbnail="img" class ="img-circle" />
+                    <div style = "text-align: center"><img style = "width: 120px; height: 150px" ngf-thumbnail="img" class ="img-circle" /></div>
                 </div>
-                <h3><b>{{VName }} {{LName }}</b></h3>
+                <h3><b>{{VName}} {{LName }}</b></h3>
                 <h4>Visiting: <b> {{person }}</b></h4>
                 <h4>Purpose Of Visit: <b> {{visit}}</b></h4>
                 <h4>{{date}}</h4>
             </div>
             </div>
             <div class = "modal-footer">
-                <button class="btn btn-default" data-dismiss="modal" ng-click="refresh()">Close</button>
                 <button class="btn btn-warning" id="Print">Print</button>
             </div>
     </div>
