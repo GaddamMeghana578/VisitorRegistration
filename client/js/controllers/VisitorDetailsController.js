@@ -9,13 +9,13 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
     $scope.date =[];
     // Get all user information and show them.
     $http.get('/VisitorRegistration')
-        .success(function (data) {
+        .then(function (data) {
             $scope.VisitorRegistration = data;
             console.log(data);
-            $scope.details = data;
+            $scope.details = data.data;
             $scope.sortProperty = 'FirstName';
             $scope.sortDirection = false;
-            angular.forEach(data, function (value, key) {
+            angular.forEach(data.data, function (value, key) {
                 var d = new Date(value.Date);
                 $scope.date[key] = d.toLocaleString();
                 value.Date= $scope.date[key];
@@ -24,7 +24,7 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
             })
         })
 
-        .error(function (data) {
+        .catch(function (data) {
             console.log('Error: ' + data);
 
         });
@@ -34,23 +34,23 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
         $scope.submitted = true;
         //When clicking the view button, get the particular visitor details and show them.
         $http.get('/VisitorRegistration/' + uuid)
-            .success(function (data) {
+            .then(function (data) {
                 $scope.VisitorRegistration = data;
                 console.log(data);
-                $scope.detail = data;
-                $scope.imgloc = data.Image;
-                var d = new Date(data.Date);
+                $scope.detail = data.data;
+                $scope.imgloc = data.data.Image;
+                var d = new Date(data.data.Date);
                 $scope.date = d.toLocaleString();
 
                 // We got the other details. Now get the image.
                 $http.get('/VisitorImage/' + $scope.imgloc)
-                    .success(function(data) {
+                    .then(function(data) {
                         $scope.img = (('data:image/jpg;base64,') || ('data:image/png;base64,')) + data;
                     });
 
             })
 
-            .error(function (data) {
+            .catch(function (data) {
                 console.log('Error:' + data);
             });
     };
@@ -100,14 +100,14 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
     // When editing and saving the Visitor information, send the text to the node API to update the details of the record matching uuid and visitor.
     $scope.EditandSaveVisitorRegistration = function (uuid, visitor) {
         $http.put('/VisitorRegistration/' + uuid, visitor)
-            .success(function (data) {
+            .then(function (data) {
                 $scope.VisitorRegistration = data;
                 console.log(data);
-                $scope.vName = data.FirstName;
-                var d = new Date(data.Date);
+                $scope.vName = data.data.FirstName;
+                var d = new Date(data.data.Date);
                 $scope.date = d.toLocaleString();
             })
-            .error(function (data) {
+            .catch(function (data) {
                 console.log('Error:' + data);
             });
     };
@@ -115,13 +115,13 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
     // When deleting the information, send the uuid to the node API to delete the record matching the uuid.
     $scope.DeleteVisitorRegistration = function (uuid) {
         $http.delete('/VisitorRegistration/' + uuid)
-            .success(function (data) {
+            .then(function (data) {
                 $scope.VisitorRegistration = data;
                 console.log(data);
                 window.location.reload(true);
 
             })
-            .error(function (data) {
+            .catch(function (data) {
                 console.log('Error:' + data);
             });
     };
