@@ -62,15 +62,15 @@ module.exports = function(server) {
          var transporter = nodemailer.createTransport(smtpTransport({
          service: "Gmail",  // sets automatically host, port and connection security settings
          auth: {
-         user: "maggi.reddy84@gmail.com",
-         pass: "FrenchConnectionUnitedKingdom578"
+         user: "test@gmail.com", // enter your email id
+         pass: "abc234" // enter your password
          }
          }));
 
          // setup e-mail data with unicode symbols
          var mailOptions = {
-         from: "maggi.reddy84@gmail.com", // sender address
-         to: "meghana_reddy9092@yahoo.com", // list of receivers
+         from: "test@gmail.com", // sender address
+         to: "sample@yahoo.com", // list of receivers
          subject: "VisitorDetails", // Subject line
          text: "Hello this person has come to visit you. The name of the person is mentioned below", // plaintext body
          html: visitorData.FirstName// html body
