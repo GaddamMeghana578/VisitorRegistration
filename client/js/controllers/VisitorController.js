@@ -86,7 +86,7 @@ VisitorApp.controller('VisitorController',['$scope', '$http', 'Upload', function
                 $scope.visit = data.data.Visit;
                 $scope.imgloc = data.data.Image;
 
-                var d = new Date(data.date.Date);
+                var d = new Date(data.data.Date);
                 $scope.date = d.toLocaleString();
 
                 // We got the other details. Now get the image.
