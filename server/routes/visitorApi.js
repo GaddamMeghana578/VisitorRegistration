@@ -36,7 +36,7 @@ module.exports = function(server) {
             var extension = (extIndex < 0) ? '' : tmpPath.substr(extIndex);
             var fileUniqueName = uuid.v4();
             var fileName = fileUniqueName + extension;
-            var destPath = 'images/upload/' + fileName;
+            var destDir = path.join(__dirname, '../images/upload');
 
             // Server side file type checker.
             if (contentType !== 'image/png' && contentType !== 'image/jpeg') {
@@ -45,15 +45,30 @@ module.exports = function(server) {
             }
 
             // Rename the client side path with the server side path.
-            fs.rename(tmpPath, destPath, function (err) {
-                if (err) {
-                    return res.status(400).send('Image is not saved');
-                }
+            fs.access(destDir, (err) => {
+            if(err)
+                fs.mkdirSync(destDir);
+            let destPath = path.join(destDir, fileName);
 
-                return res.json(fileUniqueName);
-            })
+                let readStream = fs.createReadStream(tmpPath);
+                readStream.once('error', (err) => {
+                    console.log(err);
+                });
+
+                readStream.once('end', () => {
+                    //res.send(fileUniqueName);
+                    console.log('done copying');
+                    return res.json(fileUniqueName);
+
+                });
+
+                readStream.pipe(fs.createWriteStream(destPath));
+               });
+
         })
     });
+
+
 
     // Inserts the data in to the VisitorRegistration table.
     server.post('/VisitorRegistration', function (req, res) {
@@ -83,7 +98,7 @@ module.exports = function(server) {
          console.log("Message sent: " + response.message);
          }
 
-         // if you don't want to use this transport object anymore, uncomment following line
+        // if you don't want to use this transport object anymore, uncomment following line
          transporter.close(); // shut down the connection pool, no more messages
          });
 
@@ -101,16 +116,18 @@ module.exports = function(server) {
 
     // Retrieves the image from the destination path of the server.
     server.get('/VisitorImage/:imgloc', function (req, res) {
-        var imagePath = 'images/upload/' + req.params.imgloc;
+        var imagePath = path.join(__dirname, '../images/upload/');
+        imagePath = imagePath + req.params.imgloc;
         fs.readFile(imagePath, function (err, img) {
             if(!err) {
                 // Convert Uint8Array img to base64 encoded string.
                 var b64encoded = new Buffer(img).toString('base64');
-                res.writeHead(200, { 'Content-type':(('image/jpg')  || ('image/png')) });
+                res.writeHead(200, { 'Content-Type':(('image/jpeg')  || ('image/png')) });
                 res.end(b64encoded);
                 console.log("Image retrieved");
+            } else {
+                console.log("Image retrieval failed");
             }
-            console.log("Image retrieval failed");
         });
     });
 

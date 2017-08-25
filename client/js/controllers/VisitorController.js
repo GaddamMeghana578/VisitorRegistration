@@ -72,27 +72,28 @@ VisitorApp.controller('VisitorController',['$scope', '$http', 'Upload', function
                 //$scope.user = {};
                 $scope.VisitorRegistration = data;
                 console.log(data);
-                $scope.imgloc = data.data.Image;
+                var data = data.data;
+                $scope.imgloc = data.Image;
 
                 // If the image is undefined it triggers the alert message and on clicking OK it displays the Visitor Registration page.
-                if(data.data.Image == undefined){
+                if(data.Image == undefined){
                     alert("The Image has not been uploaded. Kindly upload the image")
                     angular.element('#mymodal').modal('show');
                     angular.element('#yesmodal').modal('hide');
                 }
-                $scope.VName = data.data.FirstName;
-                $scope.LName = data.data.LastName;
-                $scope.person = data.data.Person;
-                $scope.visit = data.data.Visit;
-                $scope.imgloc = data.data.Image;
+                $scope.VName = data.FirstName;
+                $scope.LName = data.LastName;
+                $scope.person = data.Person;
+                $scope.visit = data.Visit;
+                $scope.imgloc = data.Image;
 
-                var d = new Date(data.data.Date);
+                var d = new Date(data.Date);
                 $scope.date = d.toLocaleString();
 
                 // We got the other details. Now get the image.
                 $http.get('/VisitorImage/' + $scope.imgloc)
                     .then(function (data) {
-                        $scope.img = (('data:image/jpg;base64,') || ('data:image/png;base64,')) + data;
+                        $scope.img = (('data:image/jpg;base64,') || ('data:image/png;base64,')) + data.data;
                     });
             })
             .catch(function (data) {

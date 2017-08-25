@@ -13,9 +13,10 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
             $scope.VisitorRegistration = data;
             console.log(data);
             $scope.details = data.data;
+            var data = data.data;
             $scope.sortProperty = 'FirstName';
             $scope.sortDirection = false;
-            angular.forEach(data.data, function (value, key) {
+            angular.forEach(data, function (value, key) {
                 var d = new Date(value.Date);
                 $scope.date[key] = d.toLocaleString();
                 value.Date= $scope.date[key];
@@ -38,14 +39,15 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
                 $scope.VisitorRegistration = data;
                 console.log(data);
                 $scope.detail = data.data;
-                $scope.imgloc = data.data.Image;
-                var d = new Date(data.data.Date);
+                var data = data.data;
+                $scope.imgloc = data.Image;
+                var d = new Date(data.Date);
                 $scope.date = d.toLocaleString();
 
                 // We got the other details. Now get the image.
                 $http.get('/VisitorImage/' + $scope.imgloc)
                     .then(function(data) {
-                        $scope.img = (('data:image/jpg;base64,') || ('data:image/png;base64,')) + data;
+                        $scope.img = (('data:image/jpg;base64,') || ('data:image/png;base64,')) + data.data;
                     });
 
             })
@@ -103,8 +105,9 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
             .then(function (data) {
                 $scope.VisitorRegistration = data;
                 console.log(data);
-                $scope.vName = data.data.FirstName;
-                var d = new Date(data.data.Date);
+                var data = data.data;
+                $scope.vName = data.FirstName;
+                var d = new Date(data.Date);
                 $scope.date = d.toLocaleString();
             })
             .catch(function (data) {
