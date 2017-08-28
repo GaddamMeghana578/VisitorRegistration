@@ -18,14 +18,14 @@
         </div>
         <table class="table table-bordered table-striped">
             <tr>
-                <th><a ng-click ="sortProperty = 'name'; sortDirection = !sortDirection">FirstName</a></th>
-                <th>LastName</th>
-                <th>Visiting</th>
-                <th>Purpose Of Visit</th>
-                <th>Date and Time of Visit</th>
+                <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;FirstName<b></a></th>
+                <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;LastName</b></a></th>
+                <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;Visiting</b></a></th>
+                <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;Purpose Of Visit</b></a></th>
+                <th><a class='fa fa-sort'ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;Date and Time of Visit</b></a></th>
                 <th><a class = text-primary>View/Edit/Delete</a></th>
             </tr>
-            <tr ng-repeat="detail in details | filter:search | orderBy:sortProperty:sortDirection">
+            <tr ng-repeat="detail in details | filter:search | orderBy:sortProperty:sortDirection"><br/>
                 <td>{{detail.FirstName}}</td>
                 <td>{{detail.LastName}}</td>
                 <td>{{detail.Person}}</td>
@@ -49,16 +49,16 @@
                 <h2 class = "bg-danger text-center"><strong>Visitor</strong></h2>
             </div>
             <div class = "modal-body">
-                <img style = "float:right; width: 150px; height: 200px" ngf-thumbnail="img" class ="img-circle" />
-                <h4>FirstName: <b>{{detail.FirstName }}</b></h4>
-                <h4>LastName: <b>{{detail.LastName }}</b></h4>
-                <h4>Company: <b>{{detail.Company }}</b></h4>
-                <h4>JobTitle: <b>{{detail.JobTitle }}</b></h4>
-                <h4>Email: <b>{{detail.Email }}</b></h4>
-                <h4>MobileNumber: <b>{{detail.MobileNumber }}</b></h4>
-                <h4>Visiting?: <b>{{detail.Person }}</b></h4>
-                <h4>Purpose Of Visit: <b>{{detail.Visit}}</b></h4>
-                <h4>Date and Time Of Visit: <b>{{date}}</b></h4>
+                <img style = "float:right; width: 150px; height: 200px" ngf-thumbnail="img" class ="img" />
+                <h4>FirstName: &nbsp;<b>{{detail.FirstName }}</b></h4>
+                <h4>LastName:  &nbsp;<b>{{detail.LastName }}</b></h4>
+                <h4>Company:  &nbsp;<b>{{detail.Company }}</b></h4>
+                <h4>JobTitle:  &nbsp;<b>{{detail.JobTitle }}</b></h4>
+                <h4>Email:  &nbsp; <b>{{detail.Email }}</b></h4>
+                <h4>MobileNumber:  &nbsp;<b>{{detail.MobileNumber }}</b></h4>
+                <h4>Visiting:  &nbsp;<b>{{detail.Person }}</b></h4>
+                <h4>Purpose Of Visit:  &nbsp;<b>{{detail.Visit}}</b></h4>
+                <h4>Date and Time Of Visit:  &nbsp;<b>{{date}}</b></h4>
             </div>
             <footer>
                 <p class = "text-center">&copy; Company 2016</p>
