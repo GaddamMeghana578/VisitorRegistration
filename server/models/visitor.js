@@ -5,7 +5,7 @@
 // Setup.
 var mongoose = require('mongoose'); // Helper for communicating with Mongodb.
 var db = require('../db');
-mongoose.connect(db.url, function(err, result) {
+mongoose.connect(db.url, { useNewUrlParser: true }, function(err, result) {
     if (!err) console.log("Connected to the database");
 });
 
