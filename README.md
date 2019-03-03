@@ -26,6 +26,8 @@ Steps to be followed to run this Application:
 
 • Run the command "bower install" to install the client packages mentioned in bower.json.
 
+• Create a folder by name images under server folder. Under images create another folder by name upload, all the images added will be placed under this upload folder.
+
 • Navigate to server folder(VisitorRegistration/server). Run the server using the command "node server.js".
 
 • Server is listening on port 3000. Open a browser and enter "http://localhost:3000" to run the client.
