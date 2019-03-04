@@ -9,7 +9,7 @@
     "mongoose": "^5.4.16",
     "morgan": "^1.9.1",
     "multiparty": "~4.1.2",
-    "node-uuid": "~1.4.7",
+    "uuid": "~3.3.2",
     "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "@bower_components/angular": "angular/bower-angular#1.7.7",
