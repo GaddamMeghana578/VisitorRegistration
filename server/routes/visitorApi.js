@@ -7,7 +7,7 @@
 // Initializing the node module variables...
 var Visitor = require('../models/visitor');      // Reference to Visitor.js
 var multiparty = require('multiparty');          // Multipart/form-data parser which supports streaming.
-var uuid = require('node-uuid');                 // Creates unique id.
+var uuid = require('uuid');                 // Creates unique id.
 var path = require('path');                      // Provides utilities for working with file and directory paths.
 var fs = require('fs');                          //  Provides file system.
 var nodemailer = require("nodemailer");
