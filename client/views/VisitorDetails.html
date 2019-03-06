@@ -13,11 +13,13 @@
         <h3 class ="text-center text-danger">Visitors</h3>
         <h3></h3>
         <div class ="wrapper">
+            <span>Showing {{details.length}} Visitors<span>&nbsp;&nbsp;
             <input type ="text" ng-model="search.FirstName"/>
             <div class = "fa fa-search fa-lg"></div>
         </div>
         <table class="table table-bordered table-striped">
             <tr>
+                <th>#</th>
                 <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;FirstName<b></a></th>
                 <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;LastName</b></a></th>
                 <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;Visiting</b></a></th>
@@ -26,6 +28,7 @@
                 <th><a class = text-primary>View/Edit/Delete</a></th>
             </tr>
             <tr ng-repeat="detail in details | filter:search | orderBy:sortProperty:sortDirection"><br/>
+                <td>{{ $index + 1 }}</td>
                 <td>{{detail.FirstName}}</td>
                 <td>{{detail.LastName}}</td>
                 <td>{{detail.Person}}</td>
@@ -168,7 +171,7 @@
                 <h3>Welcome</h3>
             </div>
             <div class = "modal-body">
-                <p>Registration of '{{ vName }}' is successful</p>
+                <p>Registration of '{{ detail.FirstName }}' is successful</p>
             </div>
         </div>
     </div>
