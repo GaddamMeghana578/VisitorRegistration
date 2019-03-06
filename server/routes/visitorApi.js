@@ -121,7 +121,7 @@ module.exports = function(server) {
         fs.readFile(imagePath, function (err, img) {
             if(!err) {
                 // Convert Uint8Array img to base64 encoded string.
-                var b64encoded = new Buffer(img).toString('base64');
+                var b64encoded = Buffer.from(img).toString('base64');
                 res.writeHead(200, { 'Content-Type':(('image/jpeg')  || ('image/png')) });
                 res.end(b64encoded);
                 console.log("Image retrieved");
