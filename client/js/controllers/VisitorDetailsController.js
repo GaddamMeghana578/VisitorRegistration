@@ -109,6 +109,7 @@ VisitorApp.controller('VisitorDetailsController', function($scope, $http, Upload
                 $scope.vName = data.FirstName;
                 var d = new Date(data.Date);
                 $scope.date = d.toLocaleString();
+                window.location.reload(true);
             })
             .catch(function (data) {
                 console.log('Error:' + data);
