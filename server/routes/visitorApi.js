@@ -88,14 +88,15 @@ module.exports = function(server) {
          to: "sample@yahoo.com", // list of receivers
          subject: "VisitorDetails", // Subject line
          text: "Hello this person has come to visit you. The name of the person is mentioned below", // plaintext body
-         html: visitorData.FirstName// html body
+         html: `Hello ${visitorData.FirstName} ${visitorData.LastName} is here for a ${visitorData.Visit}. ${visitorData.FirstName} works at ${visitorData.Company} as a ${visitorData.JobTitle}`// html body
          }
          // send mail with defined transport object
-         transporter.sendMail(mailOptions, function(error, response){
+         transporter.sendMail(mailOptions, function(error, info){
          if(error){
          console.log(error);
          }else{
-         console.log("Message sent: " + response.message);
+         console.log("Message sent: " + info.messageId);
+         console.log(info.envelope);
          }
 
         // if you don't want to use this transport object anymore, uncomment following line
