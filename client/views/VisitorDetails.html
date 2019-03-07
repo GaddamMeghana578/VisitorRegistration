@@ -13,11 +13,13 @@
         <h3 class ="text-center text-danger">Visitors</h3>
         <h3></h3>
         <div class ="wrapper">
+            <span>Showing {{details.length}} Visitors<span>&nbsp;&nbsp;
             <input type ="text" ng-model="search.FirstName"/>
             <div class = "fa fa-search fa-lg"></div>
         </div>
         <table class="table table-bordered table-striped">
             <tr>
+                <th>#</th>
                 <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;FirstName<b></a></th>
                 <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;LastName</b></a></th>
                 <th><a class='fa fa-sort' ng-click ="sortProperty = 'name'; sortDirection = !sortDirection"><b>&nbsp;Visiting</b></a></th>
@@ -26,6 +28,7 @@
                 <th><a class = text-primary>View/Edit/Delete</a></th>
             </tr>
             <tr ng-repeat="detail in details | filter:search | orderBy:sortProperty:sortDirection"><br/>
+                <td>{{ $index + 1 }}</td>
                 <td>{{detail.FirstName}}</td>
                 <td>{{detail.LastName}}</td>
                 <td>{{detail.Person}}</td>
@@ -49,7 +52,7 @@
                 <h2 class = "bg-danger text-center"><strong>Visitor</strong></h2>
             </div>
             <div class = "modal-body">
-                <img style = "float:right; width: 150px; height: 200px" ngf-thumbnail="img" class ="img" />
+                <img style = "float:right; width: 150px; height: 200px" ngf-thumbnail="img" class ="img-circle" />
                 <h4>FirstName: &nbsp;<b>{{detail.FirstName }}</b></h4>
                 <h4>LastName:  &nbsp;<b>{{detail.LastName }}</b></h4>
                 <h4>Company:  &nbsp;<b>{{detail.Company }}</b></h4>
@@ -147,7 +150,7 @@
                     </div>
                 </form>
                 <div class = "modal-footer">
-                    <button class="btn btn-warning" ng-disabled="registerForm.$invalid" data-toggle="modal" data-target="#savemodal" ng-click="EditandSaveVisitorRegistration(detail.UUID,detail)">Save</button>
+                    <button class="btn btn-warning" data-dismiss="modal" ng-disabled="registerForm.$invalid" data-toggle="modal" data-target="#savemodal" ng-click="EditandSaveVisitorRegistration(detail.UUID,detail)">Save</button>
                 </div>
             </div>
         </div>
@@ -164,11 +167,11 @@
     <div class = "modal-dialog">
         <div class = "modal-content">
             <div class = "modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close"  onclick="javascript:window.location.reload()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3>Welcome</h3>
             </div>
             <div class = "modal-body">
-                <p>Registration of '{{ vName }}' is successful</p>
+                <p>Registration of '{{ detail.FirstName }}' is successful</p>
             </div>
         </div>
     </div>

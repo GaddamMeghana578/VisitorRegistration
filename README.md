@@ -14,20 +14,20 @@ Login: This is mainly for the administrator mode. You need to enter the valid cr
 
 Steps to be followed to run this Application:
 
-• Install Node.js.(Go to http://nodejs.org)- version(4.4.7).
+• Install Node.js.(Go to http://nodejs.org)
 
-• Install Mongodb.(Go to http://mongodb.com)- version(3.2.8).
+• Install Mongodb.(Go to http://mongodb.com)
 
 • Start Mongo server.(run command mongod on the terminal)(on mac run command sudo mongod).
 
-• To install node modules, open command prompt as an administrator and navigate to the root folder(VisitorRegistration). Run "npm install".
-
-• Run "npm install -g bower" to install bower. We use bower to install the client packages. Note:Bower is dependent on git. So remember to install git before you install bower.
-
-• Run the command "bower install" to install the client packages mentioned in bower.json.
-
-• Create a folder by name images under server folder. Under images create another folder by name upload, all the images added will be placed under this upload folder.
+• To install dependencies, open command prompt as an administrator and navigate to the root folder(VisitorRegistration). Run "yarn or yarn install".
 
 • Navigate to server folder(VisitorRegistration/server). Run the server using the command "node server.js".
 
 • Server is listening on port 3000. Open a browser and enter "http://localhost:3000" to run the client.
+
+
+
+Click on the below image to check the project (Visitor Portal) Demo.
+
+[![Visitor Portal Demo](https://i9.ytimg.com/vi_webp/qoIQs76nt9k/hqdefault.webp?sqp=CNSThuQF&rs=AOn4CLD6HvzYCLkQg3gZ8jpbKUgoktolGg)](https://www.youtube.com/watch?v=qoIQs76nt9k&t=2s "Visitor Portal Demo")

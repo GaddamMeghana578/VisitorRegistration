@@ -7,7 +7,7 @@
 // Initializing the node module variables...
 var Visitor = require('../models/visitor');      // Reference to Visitor.js
 var multiparty = require('multiparty');          // Multipart/form-data parser which supports streaming.
-var uuid = require('node-uuid');                 // Creates unique id.
+var uuid = require('uuid');                 // Creates unique id.
 var path = require('path');                      // Provides utilities for working with file and directory paths.
 var fs = require('fs');                          //  Provides file system.
 var nodemailer = require("nodemailer");
@@ -88,14 +88,15 @@ module.exports = function(server) {
          to: "sample@yahoo.com", // list of receivers
          subject: "VisitorDetails", // Subject line
          text: "Hello this person has come to visit you. The name of the person is mentioned below", // plaintext body
-         html: visitorData.FirstName// html body
+         html: `Hello ${visitorData.FirstName} ${visitorData.LastName} is here for a ${visitorData.Visit}. ${visitorData.FirstName} works at ${visitorData.Company} as a ${visitorData.JobTitle}`// html body
          }
          // send mail with defined transport object
-         transporter.sendMail(mailOptions, function(error, response){
+         transporter.sendMail(mailOptions, function(error, info){
          if(error){
          console.log(error);
          }else{
-         console.log("Message sent: " + response.message);
+         console.log("Message sent: " + info.messageId);
+         console.log(info.envelope);
          }
 
         // if you don't want to use this transport object anymore, uncomment following line
@@ -121,7 +122,7 @@ module.exports = function(server) {
         fs.readFile(imagePath, function (err, img) {
             if(!err) {
                 // Convert Uint8Array img to base64 encoded string.
-                var b64encoded = new Buffer(img).toString('base64');
+                var b64encoded = Buffer.from(img).toString('base64');
                 res.writeHead(200, { 'Content-Type':(('image/jpeg')  || ('image/png')) });
                 res.end(b64encoded);
                 console.log("Image retrieved");
