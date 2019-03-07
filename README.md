@@ -26,4 +26,4 @@ Steps to be followed to run this Application:
 
 • Server is listening on port 3000. Open a browser and enter "http://localhost:3000" to run the client.
 
-![Project Demo](https://camo.githubusercontent.com/1cfcdc78b13cc731b04b81750f111bcca67a9dbc/68747470733a2f2f69392e7974696d672e636f6d2f76695f776562702f716f49517337366e74396b2f687164656661756c742e776562703f7371703d434e5354687551462672733d414f6e34434c443648767a59434c6b516733675a386a70624b55676f6b746f6c4767)
+![Visitor Portal Demo](https://i9.ytimg.com/vi_webp/qoIQs76nt9k/hqdefault.webp?sqp=CNSThuQF&rs=AOn4CLD6HvzYCLkQg3gZ8jpbKUgoktolGg)](https://www.youtube.com/watch?v=qoIQs76nt9k&t=2s "Visitor Portal Demo")
