@@ -5,13 +5,13 @@
  */
 
 // Initializing the node module variables...
-var Visitor = require('../models/visitor');      // Reference to Visitor.js
-var multiparty = require('multiparty');          // Multipart/form-data parser which supports streaming.
-var uuid = require('uuid');                 // Creates unique id.
-var path = require('path');                      // Provides utilities for working with file and directory paths.
-var fs = require('fs');                          //  Provides file system.
-var nodemailer = require("nodemailer");
-var smtpTransport = require('nodemailer-smtp-transport');
+import Visitor from "../models/visitor"    // Reference to Visitor.js
+import multiparty from "multiparty"        // Multipart/form-data parser which supports streaming.
+import uuid from "uuid"                // Creates unique id.
+import path from "path"                     // Provides utilities for working with file and directory paths.
+import fs from "fs"                       //  Provides file system.
+import nodemailer from "nodemailer"
+import smtpTransport from "nodemailer-smtp-transport"
 
 // Find and get all the documents from the VisitorRegistration table.
 module.exports = function(server) {
