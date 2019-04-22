@@ -3,15 +3,15 @@
  */
 
 // Initialize node modules.
-import express from "express";
+import express from "express"; // Reference express.
 import bodyParser from "body-parser"; // Required for POST requests.
-import methodOverride from "method-override"; // Required for DELETE AND PUT requests.                   // Helper for communicating with Mongodb.
+import methodOverride from "method-override"; // Required for DELETE AND PUT requests.
 import morgan from "morgan"; // Log requests to console.
-import graphqlHTTP from "express-graphql";
-import mongoose from "mongoose";
+import graphqlHTTP from "express-graphql"; // Creates an Express server that runs a GraphQL API.
+import mongoose from "mongoose"; // Helper for communicating with Mongodb.
 import schema from "./schema";
 
-const server = express();
+const server = express(); // Create server with express.
 const PORT = 3000;
 server.use(express.static(__dirname + "/../client"));
 server.use(morgan("dev")); // Logging requests to console.
