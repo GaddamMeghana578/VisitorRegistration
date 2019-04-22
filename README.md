@@ -1,8 +1,9 @@
 # VisitorRegistration
+
 Visitor Registration project uses the MEAN stack technology for managing the visitors.
 
 Description:
-Currently this application works in 2 modes. 
+Currently this application works in 2 modes.
 
 • Visitor(Enroll)
 
@@ -14,19 +15,19 @@ Login: This is mainly for the administrator mode. You need to enter the valid cr
 
 Steps to be followed to run this Application:
 
-• Install Node.js.(Go to http://nodejs.org)
+• Install Node.js.(Go to http://nodejs.org) if you don't have it on your system.
 
-• Install Mongodb.(Go to http://mongodb.com)
+• Install Mongodb.(Go to http://mongodb.com) if you don't have it on your system.
+
+• In your terminal clone this repo using https://github.com/GaddamMeghana578/VisitorRegistration.git
+
+• Move to the appropriate directory: cd VisitorRegistration
 
 • Start Mongo server.(run command mongod on the terminal)(on mac run command sudo mongod).
 
-• To install dependencies, open command prompt as an administrator and navigate to the root folder(VisitorRegistration). Run "yarn or yarn install".
+• Open another window in terminal and in the project folder run "yarn or yarn install" or if you are using npm then npm install to install dependencies.
 
-• Navigate to server folder(VisitorRegistration/server). Run the server using the command "node server.js".
-
-• Server is listening on port 3000. Open a browser and enter "http://localhost:3000" to run the client.
-
-
+• Run yarn start or npm start to see the app at "http://localhost:3000"
 
 Click on the below image to check the project (Visitor Portal) Demo.
 
