@@ -5,7 +5,7 @@
 // Initializing the node module variables...
 import Visitor from "../models/visitor"; // Reference to Visitor.js
 import multiparty from "multiparty"; // Multipart/form-data parser which supports streaming.
-import uuid from "uuid"; // Creates unique id.
+import { v4 as uuidv4 } from 'uuid'; // Creates unique id.
 import path from "path"; // Provides utilities for working with file and directory paths.
 import fs from "fs"; //  Provides file system.
 import nodemailer from "nodemailer";
@@ -31,7 +31,7 @@ module.exports = function(server) {
       var tmpPath = file.path;
       var extIndex = tmpPath.lastIndexOf(".");
       var extension = extIndex < 0 ? "" : tmpPath.substr(extIndex);
-      var fileUniqueName = uuid.v4();
+      var fileUniqueName = uuidv4();
       var fileName = fileUniqueName + extension;
       var destDir = path.join(__dirname, "../images/upload");
 

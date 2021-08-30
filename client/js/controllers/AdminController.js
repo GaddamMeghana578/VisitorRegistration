@@ -10,7 +10,7 @@ VisitorApp.controller('AdminController', function($scope){
         $scope.submitted = true;
 
         // When landing on the page, checks if the username and password matches the below.
-        if(username === 'admin' && password === '12345'){
+        if(username === 'admin' && password === '@mgaddam123'){
             var path = "/#!/Submit"
             window.location.href = path;
         }
