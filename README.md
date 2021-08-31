@@ -27,10 +27,15 @@ Enter cloned directory
 cd VisitorRegistration/
 ```
 
-Enter project directory and do yarn install or npm install
+Enter project directory and install the packages
 
 ```
-cd VisitorRegistration && npm install --save or yarn install --save
+VisitorRegistration/npm install
+```
+or if you are using yarn, you can do
+
+```
+VisitorRegistration/yarn install
 ```
 
 ## Starting the repository on your machine
@@ -42,25 +47,39 @@ If you are not using **MongoDBAtlas** then do the below:
 Start Mongo server in your project directory
 
 ```
-cd VisitorRegistration && mongod
+cd VisitorRegistration
+```
+
+```
+VisitorRegistration/mongod
 ```
 On mac book you need to run
 
 ```
-cd VisitorRegistration && sudo mongod
+VisitorRegistration/sudo mongod
 ```
 
-Next open a new command prompt, enter project directory and do npm start or yarn start
+Next open a new command prompt(terminal), enter into project directory
 
 ```
-cd VisitorRegistration && npm start or yarn start
+cd VisitorRegistration
+```
+you can run the application doing the below
+
+```
+VisitorRegistration/npm start
+```
+or (for yarn)
+
+```
+VisitorRegistration/yarn start
 ```
 
 Now you can load **localhost:3000** in your browser and use the app.
 
 ## Built With
 
-* [MongoDB](https://www.mongodb.com/) - No SQL Database 
+* [MongoDB](https://www.mongodb.com/) - No SQL Database
 * [Express](https://expressjs.com/) - Node.js web application framework
 * [Angular](https://angular.io/) - Frontend javascript library
 * [Node](https://nodejs.org/en/) - Backend framework
